@@ -1,9 +1,31 @@
 // src/Components/Navbar/Navbar.js
-import React from "react";
-import { Link } from "react-router-dom";
-import "./Navbar.css"; // Optional if you have styles
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import "./Navbar.css";
+import name from "../Sign_Up/Sign_Up";
 
 function Navbar() {
+  const navigate = useNavigate();
+  const authToken = sessionStorage.getItem("auth-token");
+
+  // 👇 State to store and display user's name
+  const [userName, setUserName] = useState("");
+
+  useEffect(() => {
+    // Get email from session storage
+    const email = sessionStorage.getItem("userEmail");
+    if (email) {
+      const name = email.split("@")[0];
+      setUserName(name);
+    }
+  }, []);
+
+  const handleLogout = () => {
+    sessionStorage.clear(); // Clear all session data
+    navigate("/login"); // Redirect to login page
+    window.location.reload(); // Refresh to update UI
+  };
+
   return (
     <nav>
       <div className="nav__logo">
@@ -20,7 +42,6 @@ function Navbar() {
             <g>
               <path d="M499.8,10c91.7,0,166,74.3,166,166c0,91.7-74.3,166-166,166c-91.7,0-166-74.3-166-166C333.8,84.3,408.1,10,499.8,10z" />
               <path d="M499.8,522.8c71.2,0,129.1-58.7,129.1-129.1H370.6C370.6,464.1,428.6,522.8,499.8,522.8z" />
-              {/* Truncated last path for simplicity */}
             </g>
           </svg>
         </Link>
@@ -30,8 +51,31 @@ function Navbar() {
       <ul className="nav__links active">
         <li className="link"><Link to="/">Home</Link></li>
         <li className="link"><Link to="/appointments">Appointments</Link></li>
-        <li className="link"><Link to="/signup"><button className="btn1">Sign Up</button></Link></li>
-        <li className="link"><Link to="/login"><button className="btn1">Login</button></Link></li>
+
+        {authToken ? (
+          <>
+            {/* 👇 Display user's name before logout button */}
+            <li className="link"><span className="user-name">Hi, {name}</span></li>
+            <li className="link">
+              <button className="btn1" onClick={handleLogout}>
+                Logout
+              </button>
+            </li>
+          </>
+        ) : (
+          <>
+            <li className="link">
+              <Link to="/signup">
+                <button className="btn1">Sign Up</button>
+              </Link>
+            </li>
+            <li className="link">
+              <Link to="/login">
+                <button className="btn1">Login</button>
+              </Link>
+            </li>
+          </>
+        )}
       </ul>
     </nav>
   );
