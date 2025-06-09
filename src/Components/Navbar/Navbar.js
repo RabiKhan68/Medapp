@@ -39,6 +39,9 @@ function Navbar() {
       <ul className="nav__links active">
         <li className="link"><Link to="/">Home</Link></li>
         <li className="link"><Link to="/appointments">Appointments</Link></li>
+        <li className="link">
+  <Link to="/instantconsultation">Instant Consultation</Link>
+</li>
 
         {authToken ? (
           <>
