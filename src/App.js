@@ -2,8 +2,10 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./Components/Navbar/Navbar";
-import Landing_Page from "./Components/Landing_Page/Landing_Page";
+import LandingPage from "./Components/Landing_Page/Landing_Page";
 import Appointments from "./Pages/Appointments";
+import SignUp from "./Components/Sign_Up/Sign_Up";
+import Login from "./Components/Login/Login";
 
 function App() {
   return (
@@ -11,8 +13,10 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Landing_Page />} />
+          <Route path="/" element={<LandingPage />} />
           <Route path="/" element={<Appointments />} />
+          <Route path="/Login" element={<Login />} />
+          <Route path="/SignUp" element={<SignUp />} />
         </Routes>
       </BrowserRouter>
     </div>
