@@ -1,29 +1,17 @@
-// src/Components/Navbar/Navbar.js
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
-import name from "../Sign_Up/Sign_Up";
 
 function Navbar() {
   const navigate = useNavigate();
   const authToken = sessionStorage.getItem("auth-token");
-
-  // 👇 State to store and display user's name
-  const [userName, setUserName] = useState("");
-
-  useEffect(() => {
-    // Get email from session storage
-    const email = sessionStorage.getItem("userEmail");
-    if (email) {
-      const name = email.split("@")[0];
-      setUserName(name);
-    }
-  }, []);
+  const email = sessionStorage.getItem("email");
+  const name = email ? email.split("@")[0] : null;
 
   const handleLogout = () => {
-    sessionStorage.clear(); // Clear all session data
-    navigate("/login"); // Redirect to login page
-    window.location.reload(); // Refresh to update UI
+    sessionStorage.clear();
+    navigate("/login");
+    window.location.reload();
   };
 
   return (
@@ -54,7 +42,6 @@ function Navbar() {
 
         {authToken ? (
           <>
-            {/* 👇 Display user's name before logout button */}
             <li className="link"><span className="user-name">Hi, {name}</span></li>
             <li className="link">
               <button className="btn1" onClick={handleLogout}>
