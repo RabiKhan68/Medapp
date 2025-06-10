@@ -42,6 +42,7 @@ function Navbar() {
         <li className="link">
   <Link to="/instantconsultation">Instant Consultation</Link>
 </li>
+<li className = "link"><Link to = "/reviewform">Submit Review</Link></li>
 
         {authToken ? (
           <>

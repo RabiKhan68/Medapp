@@ -1,11 +1,9 @@
-/* src/components/ReviewForm/ReviewForm.css */
-
 .review-container {
   padding: 20px;
-  border: 1px solid #ddd;
   margin: 30px auto;
   width: 80%;
-  background-color: #f9f9f9;
+  background-color: #fff;
+  border: 2px solid #ddd;
   border-radius: 8px;
 }
 
@@ -14,14 +12,46 @@
   font-size: 16px;
   margin-top: 10px;
   cursor: pointer;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
 }
 
 .feedback-form {
   margin-top: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
-.feedback-form textarea {
-  width: 100%;
+.feedback-form label {
+  margin: 10px 0 5px;
+}
+
+.feedback-form input,
+.feedback-form textarea,
+.feedback-form select {
   padding: 10px;
   font-size: 16px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.feedback-form button {
+  background-color: #2196f3;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.submitted-message {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid green;
+  border-radius: 8px;
+  background-color: #e8f5e9;
 }
