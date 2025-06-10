@@ -179,4 +179,26 @@ nav {
     background-color:#3685fb; /* Hover effect */
     color:white; /* Hover effect */
 }
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  padding: 10px;
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.dropdown-content {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 1;
+}
+
   

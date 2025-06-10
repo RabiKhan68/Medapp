@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
+import ProfileCard from '../ProfileCard/ProfileCard';
 
 function Navbar() {
   const navigate = useNavigate();
   const authToken = sessionStorage.getItem("auth-token");
   const email = sessionStorage.getItem("email");
   const name = email ? email.split("@")[0] : null;
+
+  const [showProfile, setShowProfile] = useState(false); // ✅ FIXED
 
   const handleLogout = () => {
     sessionStorage.clear();
@@ -39,10 +42,21 @@ function Navbar() {
       <ul className="nav__links active">
         <li className="link"><Link to="/">Home</Link></li>
         <li className="link"><Link to="/appointments">Appointments</Link></li>
-        <li className="link">
-  <Link to="/instantconsultation">Instant Consultation</Link>
+        <li className="link"><Link to="/instantconsultation">Instant Consultation</Link></li>
+        <li className="link"><Link to="/reviewform">Submit Review</Link></li>
+
+        <li className="link dropdown">
+  <span onClick={() => setShowProfile(!showProfile)} className="user-name dropdown-toggle">
+    Hi, {name}
+  </span>
+  {showProfile && (
+    <div className="dropdown-content">
+      <ProfileCard />
+      <button className="btn1" onClick={handleLogout}>Logout</button>
+    </div>
+  )}
 </li>
-<li className = "link"><Link to = "/reviewform">Submit Review</Link></li>
+
 
         {authToken ? (
           <>
@@ -56,14 +70,10 @@ function Navbar() {
         ) : (
           <>
             <li className="link">
-              <Link to="/signup">
-                <button className="btn1">Sign Up</button>
-              </Link>
+              <Link to="/signup"><button className="btn1">Sign Up</button></Link>
             </li>
             <li className="link">
-              <Link to="/login">
-                <button className="btn1">Login</button>
-              </Link>
+              <Link to="/login"><button className="btn1">Login</button></Link>
             </li>
           </>
         )}
