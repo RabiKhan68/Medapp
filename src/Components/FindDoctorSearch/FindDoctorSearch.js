@@ -1,3 +1,4 @@
+// ✅ KEEP THIS ONE
 import React, { useState, useRef } from 'react';
 import './FindDoctorSearch.css';
 
@@ -30,7 +31,10 @@ const FindDoctorSearch = ({ onSearch }) => {
         type="text"
         placeholder="Search by speciality..."
         value={searchText}
-        onChange={(e) => setSearchText(e.target.value)}
+        onChange={(e) => {
+          setSearchText(e.target.value);
+          onSearch(e.target.value); // real-time search
+        }}
         onFocus={handleFocus}
         className="search-input"
       />
