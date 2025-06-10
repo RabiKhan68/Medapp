@@ -18,7 +18,8 @@ function App() {
           <Route path="/appointments" element={<Appointments />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/instant-consultation" element={<InstantConsultation />} />        </Routes>
+          <Route path="/instantconsultation" element={<InstantConsultation />} />
+        </Routes>
       </BrowserRouter>
     </div>
   );
