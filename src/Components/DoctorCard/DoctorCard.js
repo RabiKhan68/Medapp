@@ -1,19 +1,26 @@
-// src/Components/DoctorCard/DoctorCard.js
 import React, { useState } from 'react';
 import './DoctorCard.css';
 import AppointmentForm from '../AppointmentForm/AppointmentForm';
 
 const DoctorCard = ({ name, experience, rating, specialty, image }) => {
-  const [showForm, setShowForm] = useState(false); // Step 1: Toggle state
+  const [showForm, setShowForm] = useState(false);
+  const [isBooked, setIsBooked] = useState(false);
+  const [appointmentInfo, setAppointmentInfo] = useState(null);
 
   const handleBookClick = () => {
-    setShowForm(!showForm); // Toggle form visibility
+    setShowForm(true);
+  };
+
+  const handleCancelClick = () => {
+    setIsBooked(false);
+    setAppointmentInfo(null);
+    setShowForm(false);
   };
 
   const handleFormSubmit = (formData) => {
-    console.log('Appointment Data:', formData);
-    alert(`Appointment booked for ${formData.name} with Dr. ${name} on ${formData.date} at ${formData.time}`);
-    setShowForm(false); // Hide form after submission
+    setIsBooked(true);
+    setAppointmentInfo(formData);
+    setShowForm(false);
   };
 
   return (
@@ -25,15 +32,27 @@ const DoctorCard = ({ name, experience, rating, specialty, image }) => {
         <p>Rating: {rating}</p>
         <p>Specialty: {specialty}</p>
 
-        <div>
-          <button className="book-appointment-btn" onClick={handleBookClick}>
-            <div>{showForm ? 'Cancel' : 'Book Appointment'}</div>
-            <div>No Booking Fee</div>
-          </button>
+        <div className="doctor-card-options-container">
+          {!isBooked && (
+            <button className="book-appointment-btn" onClick={handleBookClick}>
+              <div>Book Appointment</div>
+              <div>No Booking Fee</div>
+            </button>
+          )}
+
+          {isBooked && (
+            <>
+              <p className="booking-confirmation">
+                Appointment booked on {appointmentInfo.date} at {appointmentInfo.time}
+              </p>
+              <button className="cancel-appointment-btn" onClick={handleCancelClick}>
+                Cancel Appointment
+              </button>
+            </>
+          )}
         </div>
 
-        {/* Step 3: Conditional rendering of AppointmentForm */}
-        {showForm && (
+        {showForm && !isBooked && (
           <AppointmentForm
             doctorName={name}
             doctorSpeciality={specialty}
