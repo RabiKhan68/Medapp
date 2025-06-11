@@ -7,9 +7,10 @@ import Appointments from "./Pages/Appointments";
 import SignUp from "./Components/Sign_Up/Sign_Up";
 import Login from "./Components/Login/Login";
 import InstantConsultation from './Components/InstantConsultationBooking/InstantConsultation';
-import BookingConsultation from './Components/BookingConsultation'; // ✅ Add this import
+import BookingConsultation from './Components/BookingConsultation';
 import Notification from './Components/Notification/Notification';
 import ReviewForm from "./Components/ReviewForm/ReviewForm";
+import ReportsLayout from "./Components/ReportsLayout/ReportsLayout"; // ✅ Fixed path
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="/instantconsultation" element={<InstantConsultation />} />
             <Route path="/bookingconsultation" element={<BookingConsultation />} />
             <Route path="/reviewform" element={<ReviewForm />} />
+            <Route path="/reports" element={<ReportsLayout />} /> {/* ✅ Route is correct */}
           </Routes>
         </Notification>
       </BrowserRouter>

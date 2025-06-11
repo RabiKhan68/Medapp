@@ -45,18 +45,10 @@ function Navbar() {
         <li className="link"><Link to="/instantconsultation">Instant Consultation</Link></li>
         <li className="link"><Link to="/reviewform">Submit Review</Link></li>
 
-        <li className="link dropdown">
-  <span onClick={() => setShowProfile(!showProfile)} className="user-name dropdown-toggle">
-    Hi, {name}
-  </span>
-  {showProfile && (
-    <div className="dropdown-content">
-      <ProfileCard />
-      <button className="btn1" onClick={handleLogout}>Logout</button>
-    </div>
-  )}
-</li>
-
+        <div className="dropdown-content">
+  <Link to="/profile">Profile</Link>
+  <Link to="/reports">Your Reports</Link>
+</div>
 
         {authToken ? (
           <>
