@@ -1,23 +1,24 @@
-// src/components/ReportsLayout/ReportsLayout.js
-
 import React from 'react';
 import './ReportsLayout.css';
 
 const reports = [
-  { id: 1, title: 'Blood Test Report', date: '2024-05-25' },
-  { id: 2, title: 'X-Ray Report', date: '2024-06-01' },
-  { id: 3, title: 'MRI Report', date: '2024-06-10' }
+  { id: 1, title: 'Blood Test Report', date: '2024-05-25', fileName: 'blood-test.png' },
+  { id: 2, title: 'X-Ray Report', date: '2024-06-01', fileName: 'xray-report.png' },
+  { id: 3, title: 'MRI Report', date: '2024-06-10', fileName: 'mri-report.png' }
 ];
 
 const ReportsLayout = () => {
   const handleView = (id) => {
     alert(`Viewing report ID: ${id}`);
-    // TODO: Navigate or open a modal
   };
 
-  const handleDownload = (id) => {
-    alert(`Downloading report ID: ${id}`);
-    // TODO: Link to actual download endpoint
+  const handleDownload = (fileName) => {
+    const link = document.createElement('a');
+    link.href = `${process.env.PUBLIC_URL}/reports/${fileName}`;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
@@ -38,7 +39,7 @@ const ReportsLayout = () => {
               <td>{report.date}</td>
               <td>
                 <button onClick={() => handleView(report.id)}>View</button>
-                <button onClick={() => handleDownload(report.id)}>Download</button>
+                <button onClick={() => handleDownload(report.fileName)}>Download</button>
               </td>
             </tr>
           ))}
