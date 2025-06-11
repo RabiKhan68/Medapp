@@ -1,52 +1,56 @@
 /* src/components/ReportsLayout/ReportsLayout.css */
 
 .reports-layout {
-  padding: 20px;
-  background-color: #f9f9f9;
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .reports-layout h2 {
-  margin-bottom: 15px;
-  color: #333;
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 28px;
+  color: #2c3e50;
 }
 
 .report-table {
   width: 100%;
   border-collapse: collapse;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', sans-serif;
 }
 
 .report-table th,
 .report-table td {
-  border: 1px solid #ddd;
   padding: 12px 15px;
   text-align: left;
 }
 
-.report-table th {
-  background-color: #4CAF50;
-  color: white;
-}
-
-.report-table tr:hover {
+.report-table thead {
   background-color: #f1f1f1;
 }
 
-.report-table button {
-  margin-right: 8px;
-  padding: 6px 12px;
-  border: none;
-  border-radius: 4px;
-  background-color: #2196F3;
-  color: white;
-  cursor: pointer;
+.report-table tbody tr:nth-child(even) {
+  background-color: #fafafa;
 }
 
-.report-table button:last-child {
-  background-color: #4CAF50;
+.report-table tbody tr:hover {
+  background-color: #eef;
+}
+
+.report-table button {
+  margin-right: 10px;
+  padding: 6px 12px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
 }
 
 .report-table button:hover {
-  opacity: 0.9;
+  background-color: #3498db;
+  color: white;
 }
